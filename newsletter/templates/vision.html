@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annastacia Wainaina - Vision Creation Session</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- For better browser support -->
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8B4513; /* Saddle Brown */
+            --secondary: #A0522D; /* Sienna */
+            --accent: #D2691E; /* Chocolate */
+            --light: #F5F5DC; /* Beige */
+            --dark: #3E2723; /* Dark Brown */
+            --text: #5D4037; /* Brown Text */
+            --text-light: #8D6E63; /* Light Brown Text */
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+      /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+              display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Chela One', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo img {
+  max-height: 60px;   /* keeps it proportional to navbar */
+  width: auto;        /* maintains aspect ratio */
+  height: auto;       /* makes it shrink naturally */
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+    .header-container {
+    flex-direction: column;
+}
+  .logo img {
+    max-height: 50px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+
+  .logo img {
+    max-height: 40px;
+  }
+}
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+              position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+        }
+
+        .nav-link i {
+             font-size: 0.8rem;
+             transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 10px 0;
+  min-width: 200px;
+  display: none;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+  color: #c53030;
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Rotate chevron when open */
+.nav-item:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+/* Mobile-friendly tweak */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;   /* center the links horizontally */
+    gap: 15px;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    margin: 0;
+    padding-left: 0; /* reset left indent */
+    text-align: center;   /* center dropdown links */
+  }
+
+  .dropdown-menu li a {
+    padding: 10px;  /* equal padding */
+    display: block;
+  }
+}
+        .cart-icon {
+            display: flex;
+            color: #c53030;
+            align-items: center;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(139, 69, 19, 0.9)), url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Vision Session Section */
+        .vision-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .vision-image {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .vision-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .vision-description {
+            margin-bottom: 25px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .vision-highlights {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .vision-highlights h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .vision-highlights ul {
+            list-style-type: none;
+        }
+
+        .vision-highlights li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .vision-highlights li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .quantity-selector label {
+            margin-right: 15px;
+            font-weight: 600;
+        }
+
+        .quantity-selector input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+     /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .vision-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .vision-info h2 {
+                font-size: 1.6rem;
+            }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+            
+            .service-card, .testimonial-card {
+                padding: 20px;
+            }
+        }
+
+                     .btn {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+ <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'speaking' %}" class="nav-link">MyServices<i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'speaking' %}">Speaking</a></li>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link active">Shop</a></li>
+                <li class="nav-item"><a href="{% url 'journal' %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'podcast' %}" class="nav-link">PODCAST</a></li>
+                <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                <li class="nav-item cart-icon"><i class="fas fa-shopping-cart"></i>Cart</li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Create Your Vision for 2024</h1>
+            <p>Transform your dreams into reality with personalized guidance from Annastacia Wainaina</p>
+            <a href="{% url 'contact' %}" class="btn">Book Your Session</a>
+        </div>
+    </section>
+
+    <!-- Vision Session Section -->
+    <section class="vision-section">
+        <div class="container">
+            <h2 class="section-title">Vision Creation Session</h2>
+            
+            <div class="vision-grid">
+                <div class="vision-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vision Creation Session">
+                </div>
+                
+                <div class="vision-info">
+                    <h2>Vision Creation Session - With Annastacia Wainaina</h2>
+                    <div class="price">A$189.00</div>
+                    
+                    <p class="vision-description">
+                        The beginning of each year brings about an opportunity for a fresh start. We have a chance to reset, reevaluate, realign and to begin 365 days filled with endless possibilities.
+                    </p>
+                    
+                    <p class="vision-description">
+                        Though a fresh start can begin at any moment, a fresh new year marks the beginning of a new moment in time and it's a perfect place to create a vision for what your life will look like in the months to come.
+                    </p>
+
+                    <div class="vision-highlights">
+                        <h3>What You'll Achieve:</h3>
+                        <ul>
+                            <li>Create a clear, compelling vision for your year ahead</li>
+                            <li>Break free from goal abandonment patterns</li>
+                            <li>Receive personalized strategies for lasting success</li>
+                            <li>Discover how to become the best version of yourself</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <p>Select your preferred date</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <p>Purchase session access</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <p>Schedule your session time</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <p>Begin your transformation</p>
+                        </div>
+                    </div>
+                    
+                    <p class="vision-description">
+                        Most of us are guilty of setting goals and abandoning them early on as we lose focus and life gets in the way. I'm here to help you change that. I'm here to give you lasting, satisfying, life changing results.
+                    </p>
+                    
+                    <p class="vision-description">
+                        I want to blaze the fire inside of you and to help you answer your call to greatness. To make you the best version of yourself, not just for you but for everyone around you.
+                    </p>
+                    
+                    <p class="vision-description">
+                        No matter where you are on your journey I am excited to walk with you, dream with you, challenge you and celebrate your new successes with you.
+                    </p>
+                    
+                    <p class="vision-description">
+                        I'm sharing my personal tips and lessons in order to make you a vision master!
+                    </p>
+                    
+                    <p class="vision-description">
+                        If you'd like to work even closer with me, you can also enquire about my 1:1 coaching sessions where I'll work exclusively with you to bring your vision to life.
+                    </p>
+                    
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" value="1" min="1">
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#" class="btn">Add To Cart</a>
+                        <a href="{% url 'leadership_coaching' %}" class="btn btn-secondary">Learn More About 1:1 Coaching</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Success Stories</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Annastacia's vision session completely transformed how I approach goal setting. For the first time, I have a clear roadmap for my year and the tools to stay on track."
+                    </p>
+                    <p class="testimonial-author">- Sarah J.</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The personalized attention and deep insights I gained from my session with Annastacia were invaluable. I've already made significant progress toward my vision."
+                    </p>
+                    <p class="testimonial-author">- Michael T.</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Working with Annastacia helped me break through limiting beliefs that were holding me back. Her guidance is both practical and inspiring."
+                    </p>
+                    <p class="testimonial-author">- Jessica L.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Speaking</h3>
+                    <p>Inspiring talks and keynote speeches that motivate audiences to discover their inner fire and pursue their purpose with passion.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Leadership Consultancy</h3>
+                    <p>Strategic guidance for organizations seeking to develop strong, purpose-driven leadership at all levels.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Leadership Coaching</h3>
+                    <p>One-on-one coaching sessions designed to help individuals unlock their leadership potential and achieve personal growth.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Leadership Workshops</h3>
+                    <p>Interactive workshops that provide practical tools and strategies for effective, purpose-driven leadership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Annastacia Wainaina</div>
+                    <p>Leadership consultant, coach, and creator of the Freedom Fires process.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                      <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'speaking' %}">SPEAKING</a></li>
+                        <li><a href="{% url 'journal' %}">JOURNAL</a></li>
+                        <li><a href="{% url 'podcast' %}">PODCAST</a></li>
+                        <li><a href="{% url 'shop' %}">COURSES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/annastacia-wainaina-9bbba33b/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/annastaciawainaina/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/annastaciaw"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+      
+           <div class="footer-bottom">
+  <p>
+    © <span id="year"></span> Annastacia Wainaina. All Rights Reserved. 
+    | Developed by <a href="https://alphacodesolutions.netlify.app" target="_blank" rel="noopener noreferrer" style="color: #F7DF1E; font-weight: 500; text-decoration: none;">AlphaCode Solutions</a>
+  </p>
+</div>
+
+<script>
+  // Auto-update copyright year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+        </div>
+    </footer>
+
+    <script>
+         // Navbar dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".nav-item.dropdown");
+  const menu = dropdown.querySelector(".dropdown-menu");
+  let closeTimer;
+
+  // Show immediately on hover
+  dropdown.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+    menu.style.display = "block";
+  });
+
+  // Delay hiding when mouse leaves
+  dropdown.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(() => {
+      menu.style.display = "none";
+    }, 400); // delay in ms (here: 0.5s)
+  });
+});
+
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

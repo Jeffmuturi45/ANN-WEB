@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Annastacia Wainaina | Leadership Coach, Speaker & Consultant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+ <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- For better browser support -->
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+
+    <style>
+        /* CSS Reset and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a5568;
+            --accent: #c53030;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            transform: translateZ(0);
+        }
+
+        .btn:hover {
+            background-color: #a53030;
+            transform: translateY(-2px) translateZ(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transform: translateZ(0);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            font-family: 'Chela One', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo img {
+            max-height: 60px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                max-height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                max-height: 40px;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        /* Dropdown menu hidden by default */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            list-style: none;
+            margin: 10px 0 0;
+            padding: 10px 0;
+            min-width: 200px;
+            display: none;
+            z-index: 999;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+
+        .dropdown-menu li a:hover {
+            background: #f5f5f5;
+            color: #c53030;
+        }
+
+        /* Show dropdown on hover */
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Rotate chevron when open */
+        .nav-item:hover .nav-link i {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile-friendly tweak */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                margin: 0;
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .dropdown-menu li a {
+                padding: 10px;
+                display: block;
+            }
+        }
+
+        .cart-icon {
+            display: flex;
+            color: #c53030;
+            align-items: center;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section with Sliding Background */
+        .hero {
+            position: relative;
+            padding: 150px 0 80px;
+            text-align: center;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-bg-slide.active {
+            opacity: 1;
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero .knower btn {
+            transform: translateY(-100rem);
+        }
+
+        /* About Intro Section with 3D Effect */
+        .about-intro {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .about-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .about-image-inner {
+            transform: translateZ(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover .about-image-inner {
+            transform: translateZ(30px) rotateY(5deg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-content {
+            transform-style: preserve-3d;
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            transform: translateZ(10px);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            transform: translateZ(5px);
+        }
+
+        /* Story Section with 3D Card Effect */
+        .story {
+            background-color: #f8f9fa;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .story-highlight {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+            border-left: 4px solid var(--accent);
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .story-highlight:hover {
+            transform: translateY(-5px) translateZ(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: var(--dark);
+            transform: translateZ(5px);
+        }
+
+        /* Section styling */
+        .unique-video-section {
+            padding: 60px 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        /* Container to center content */
+        .unique-video-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Responsive iframe wrapper */
+        .unique-video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(2deg);
+            transition: transform 0.5s ease;
+        }
+
+        .unique-video-wrapper:hover {
+            transform: perspective(1000px) rotateX(0deg) translateZ(10px);
+        }
+
+        .unique-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Image Gallery with 3D Effect */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 30px;
+            perspective: 1000px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 1;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateZ(10px) rotateY(5deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-intro-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .unique-video-wrapper {
+                transform: none;
+            }
+            
+            .unique-video-wrapper:hover {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link active">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'speaking' %}" class="nav-link">MyServices<i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'speaking' %}">Speaking</a></li>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="{% url 'journal' %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'podcast' %}" class="nav-link">PODCAST</a></li>
+                <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                <li class="nav-item cart-icon"><i class="fas fa-shopping-cart"></i>Cart</li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Sliding Background -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-slide active" style="background-image: url('{% static 'assets/Screen+Shot+2021-02-04+at+11.21.47+AM.webp' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/freedom\ fires.jpg' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/windows-hNiNxhUfCfQ-unsplash.webp' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/photo+glenn+nicholls+make+it+happen++13764.webp' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/human\ edge.jpg' %}');"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="container hero-content">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">Annastacia's personal journey into freedom started on the endless plains of Kenya where as a child she would dream about all of the possibilities for her life.</h1>
+            <a href="#story" class="knower btn">GET TO KNOW ME</a>
+        </div>
+    </section>
+
+    <!-- About Intro Section -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="about-intro-grid">
+                <div class="about-image" data-aos="fade-right" data-aos-duration="800">
+                    <div class="about-image-inner" style="background-color: #e2e8f0; height: 500px; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                        <img src="{%static 'assets/photo+glenn+nicholls++13863.webp' %}" alt="Annastacia Wainaina">
+                    </div>
+                </div>
+                <div class="about-content" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <h2>Annastacia Wainaina is the creator of the Freedom Fires.</h2>
+                    <p>A step by step process designed to assist conscious leaders to look within, so that they can burn through the fear and the doubts that inhibit our ability to step into the greatest level of service possible for our lives.</p>
+                    <a href="#story" class="btn">READ MORE ABOUT ANNASTACIA'S STORY ></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-content">
+                <p data-aos="fade-up" data-aos-duration="800">Annastacia's personal journey into freedom started on the endless plains of Kenya where as a child she would dream about all of the possibilities for her life.</p>
+                
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">By the time she was a teenager her innate courage and curiosity eventually led her to spread her wings moving to Finland where she studied nursing. From there she moved to Sydney in 2007.</p>
+                
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Upon arriving here Annastacia continued her career as a nurse before transitioning into aged care. Since then she has moved into a leadership role providing strategic support for managing aged care and hospitals.</p>
+                
+                <div class="story-highlight" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <p>In 2014 Annastacia returned to Kenya on a mission to adopt a child. In this process she realised that the laws around adoption that should protect the rights of children did the complete opposite, leaving them exposed and vulnerable to abuse, exploitation and trafficking. As a result in January 2015 she founded Make It Happen, a charity with a focus on Child Advocacy in Kenya especially in regards to adoption and foster care policies.</p>
+                </div>
+                
+                <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">Today, alongside her career on the front lines of health, Annastacia is also the author of Ignite - Blazing The Fires Inside of You. She is a professional speaker and is on a mission through her message to ignite new possibilities and to light a fire under purpose, passion in order enable humanity to reach a higher potential together.</p>
+                
+                <div class="signature" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
+                    <p>AW x</p>
+                    <p>Annastacia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Video Section -->
+    <section class="unique-video-section">
+        <div class="unique-video-container">
+            <div class="unique-video-wrapper" data-aos="flip-up" data-aos-duration="1000">
+                <iframe 
+                    src="https://www.youtube.com/embed/4u52kThGnN8" 
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about" data-aos="fade-up" data-aos-duration="800">
+                    <div class="footer-logo">Annastacia Wainaina</div>
+                    <p>Leadership consultant, coach, and creator of the Freedom Fires process.</p>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <h3>Quick Links</h3>
+                    <ul>
+                       <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'speaking' %}">SPEAKING</a></li>
+                        <li><a href="{% url 'journal' %}">JOURNAL</a></li>
+                        <li><a href="{% url 'podcast' %}">PODCAST</a></li>
+                        <li><a href="{% url 'shop' %}">COURSES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/annastacia-wainaina-9bbba33b/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/annastaciawainaina/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/annastaciaw"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="image-gallery">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800"><img src="{% static 'assets/YOUNITY_08.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100"><img src="{% static 'assets/photo+glenn+nicholls+make+it+happen++13933.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"><img src="{% static 'assets/Screen+Shot+2021-02-04+at+11.21.47+AM.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300"><img src="{% static 'assets/photo+glenn+nicholls++13863.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400"><img src="{% static 'assets/photo+glenn+nicholls+make+it+happen++13843.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500"><img src="{% static 'assets/10.webp' %}" alt=""></div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    © <span id="year"></span> Annastacia Wainaina. All Rights Reserved. 
+                    | Developed by <a href="https://alphacodesolutions.netlify.app" target="_blank" rel="noopener noreferrer" style="color: #F7DF1E; font-weight: 500; text-decoration: none;">AlphaCode Solutions</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar dropdown
+        document.addEventListener("DOMContentLoaded", () => {
+            const dropdown = document.querySelector(".nav-item.dropdown");
+            const menu = dropdown.querySelector(".dropdown-menu");
+            let closeTimer;
+
+            // Show immediately on hover
+            dropdown.addEventListener("mouseenter", () => {
+                clearTimeout(closeTimer);
+                menu.style.display = "block";
+            });
+
+            // Delay hiding when mouse leaves
+            dropdown.addEventListener("mouseleave", () => {
+                closeTimer = setTimeout(() => {
+                    menu.style.display = "none";
+                }, 400);
+            });
+        });
+
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Auto-update copyright year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Hero Background Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-bg-slide');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>

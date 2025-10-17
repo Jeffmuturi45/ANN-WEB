@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Annastacia Wainaina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- For better browser support -->
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+    <style>
+        /* CSS Reset and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a5568;
+            --accent: #c53030;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #a53030;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+      /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+              display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Chela One', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo img {
+  max-height: 60px;   /* keeps it proportional to navbar */
+  width: auto;        /* maintains aspect ratio */
+  height: auto;       /* makes it shrink naturally */
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .logo img {
+    max-height: 50px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .logo img {
+    max-height: 40px;
+  }
+}
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+              position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+        }
+
+        .nav-link i {
+             font-size: 0.8rem;
+             transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 10px 0;
+  min-width: 200px;
+  display: none;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+  color: #c53030;
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Rotate chevron when open */
+.nav-item:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+/* Mobile-friendly tweak */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;   /* center the links horizontally */
+    gap: 15px;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    margin: 0;
+    padding-left: 0; /* reset left indent */
+    text-align: center;   /* center dropdown links */
+  }
+
+  .dropdown-menu li a {
+    padding: 10px;  /* equal padding */
+    display: block;
+  }
+}
+        .cart-icon {
+            display: flex;
+            color: #c53030;
+            align-items: center;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--secondary);
+        }
+
+        /* Shop Categories */
+        .shop-categories {
+            background-color: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            background-color: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--accent);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .category-text {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Products Section */
+        .products {
+            background-color: #f8f9fa;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: auto;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 350px;
+        }
+
+        .product-content {
+            padding: 25px;
+            margin-top: 10px;
+        }
+
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Free Download Section */
+        .free-download {
+            background-color: white;
+            text-align: center;
+        }
+
+        .download-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #f8f9fa;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--accent);
+        }
+
+        .download-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .download-text {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+
+        .download-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .download-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+
+        .download-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+ 
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-form {
+                flex-direction: column;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+        }
+
+                   .btn {
+            text-decoration: none;
+        }
+         ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'speaking' %}" class="nav-link">MyServices<i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'speaking' %}">Speaking</a></li>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link active">Shop</a></li>
+                <li class="nav-item"><a href="{% url 'journal' %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'podcast' %}" class="nav-link">PODCAST</a></li>
+                <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                <li class="nav-item cart-icon"><i class="fas fa-shopping-cart"></i>Cart</li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">If you are ready for a mind make over that will transform you and see you maximise your potential, then you are in the right place!</h1>
+            <a href="#download" class="btn">DOWNLOAD MY FREE VISION CREATION WORKSHEET!</a>
+        </div>
+    </section>
+
+    <!-- Shop Categories -->
+    <section class="shop-categories">
+        <div class="container">
+            <h2 class="section-title">Begin your online journey with my current courses</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="category-title">BOOKS</h3>
+                    <p class="category-text">Transformative reading materials to guide your leadership journey</p>
+                    <a href="#books" class="btn btn-outline">Explore Books</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="category-title">WORKSHOPS</h3>
+                    <p class="category-text">Interactive face-to-face learning experiences</p>
+                    <a href="#workshops" class="btn btn-outline">View Workshops</a>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3 class="category-title">ONLINE COURSES</h3>
+                    <p class="category-text">Learn at your own pace with comprehensive online programs</p>
+                    <a href="#courses" class="btn btn-outline">Browse Courses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="products" id="books">
+        <div class="container">
+            <h2 class="section-title">BOOKS</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'assets/copy+right+photo+glenn+nicholls++13770.webp' %}" alt="books">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Ignite - Blazing the eternal fire inside you.</h3>
+                        <div class="product-price">A$17.00</div>
+                        <p class="product-description">A transformative guide to discovering your inner fire and unlocking your true leadership potential.</p>
+                        <a href="{% url 'ignite' %}" class="btn">View More</a>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="products" id="workshops">
+        <div class="container">
+            <h2 class="section-title">UPCOMING FACE TO FACE WORKSHOPS WITH ANNASTACIA</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'assets/personal+values+workshop.webp' %}" alt="Personal values">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Igniting your Personal Values - Workshop</h3>
+                        <div class="product-price">A$59.00</div>
+                        <p class="product-description">Discover and align with your core values to create authentic leadership and meaningful impact.</p>
+                        <a href="{% url 'values' %}" class="btn">View More</a>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'assets/visoon+creation+thumb.webp' %}" alt="Vision Creation">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Vision Creation Session - With Annastacia Wainaina</h3>
+                        <div class="product-price">A$189.00</div>
+                        <p class="product-description">Craft a compelling vision for your leadership journey and learn strategies to bring it to life.</p>
+                        <a href="{% url 'vision' %}" class="btn">View More</a>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Courses Section -->
+    <section class="products" id="courses">
+        <div class="container">
+            <h2 class="section-title">COMPLETE AN ONLINE COURSE IN YOUR OWN TIME</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{% static 'assets/ignite+thumbnail.webp' %}" alt="Ignite">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">IGNITE Online Course</h3>
+                        <div class="product-price">A$97.00</div>
+                        <p class="product-description">A comprehensive online program to ignite your leadership potential and transform your approach to challenges.</p>
+                       <a href="{% url 'contact' %}" class="btn">View More</a>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Download Section -->
+    <section class="free-download" id="download">
+        <div class="container">
+            <div class="download-content">
+                <h2 class="download-title">FREE DOWNLOAD</h2>
+                <p class="download-text">Enter your email below to access my free Vision Creation Worksheet. You can identify your goals and define your vision clearly.</p>
+                
+                <form class="download-form" method="post">
+                    <input type="email" name="email" class="download-input" placeholder="Email Address" required>
+                    <button type="submit" class="download-btn">ACCESS THE WORKSHEET</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Annastacia Wainaina</div>
+                    <p>Leadership consultant, coach, and creator of the Freedom Fires process.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                      <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'speaking' %}">SPEAKING</a></li>
+                        <li><a href="{% url 'journal' %}">JOURNAL</a></li>
+                        <li><a href="{% url 'podcast' %}">PODCAST</a></li>
+                        <li><a href="{% url 'shop' %}">COURSES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/annastacia-wainaina-9bbba33b/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/annastaciawainaina/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/annastaciaw"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+       
+           <div class="footer-bottom">
+  <p>
+    © <span id="year"></span> Annastacia Wainaina. All Rights Reserved. 
+    | Developed by <a href="https://alphacodesolutions.netlify.app" target="_blank" rel="noopener noreferrer" style="color: #F7DF1E; font-weight: 500; text-decoration: none;">AlphaCode Solutions</a>
+  </p>
+</div>
+
+<script>
+  // Auto-update copyright year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+        </div>
+    </footer>
+    <script>
+ // Navbar dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".nav-item.dropdown");
+  const menu = dropdown.querySelector(".dropdown-menu");
+  let closeTimer;
+
+  // Show immediately on hover
+  dropdown.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+    menu.style.display = "block";
+  });
+
+  // Delay hiding when mouse leaves
+  dropdown.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(() => {
+      menu.style.display = "none";
+    }, 400); // delay in ms (here: 0.5s)
+  });
+});
+
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+       
+
+        // Add to cart functionality
+        document.querySelectorAll('.btn').forEach(button => {
+            if (button.textContent === 'Add to Cart') {
+                button.addEventListener('click', function() {
+                    const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
+                    const cartCount = document.querySelector('.cart-icon');
+                    let count = parseInt(cartCount.textContent.match(/\d+/)[0]) || 0;
+                    count++;
+                    cartCount.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart ${count}`;
+                    
+                    alert(`${productTitle} has been added to your cart!`);
+                });
+            }
+        });
+    </script>
+
+    <script>
+/* CSRF helper from Django docs */
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const csrftoken = getCookie('csrftoken');
+
+
+  
+</script>
+
+<script>
+/* CSRF helper from Django docs */
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const csrftoken = getCookie('csrftoken');
+
+  // Newsletter forms
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[name="email"]');
+      const email = emailInput.value.trim();
+      if (!email) { alert('Please enter your email'); return; }
+
+      const data = new URLSearchParams();
+      data.append('email', email);
+      data.append('source', window.location.pathname);
+
+      try {
+        const res = await fetch('/subscribe/', {
+          method: 'POST',
+          body: data.toString(),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'X-CSRFToken': csrftoken
+          },
+          credentials: 'same-origin'
+        });
+        const json = await res.json();
+        if (json.success) {
+          alert(json.message || 'Subscribed!');
+          form.reset();
+        } else {
+          alert(json.error || 'Subscription failed.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error — please try again later.');
+      }
+    });
+  });
+
+  // Contact forms
+  document.querySelectorAll('.contact-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      // Validate basic client-side
+      const required = ['full_name','email','message'];
+      for (let r of required) {
+        if (!fd.get(r) || fd.get(r).trim() === '') {
+          alert('Please fill required fields');
+          return;
+        }
+      }
+      try {
+        const res = await fetch('/contact/submit/', {
+          method: 'POST',
+          body: new URLSearchParams(fd),
+          headers: {'X-CSRFToken': csrftoken},
+          credentials: 'same-origin'
+        });
+        const json = await res.json();
+        if (json.success) {
+          alert(json.message || 'Message sent!');
+          form.reset();
+        } else {
+          alert(json.error || 'Failed to send message.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error — please try again later.');
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

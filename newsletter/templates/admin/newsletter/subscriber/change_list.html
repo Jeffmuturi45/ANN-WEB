@@ -1,0 +1,62 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools %}
+    <div class="object-tools">
+        <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #FF9800;">
+            <h3 style="margin: 0 0 10px 0;">📧 Newsletter Actions</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="{% url 'admin:download_all_emails' %}" class="button" style="background: #4CAF50; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px;">
+                    📥 Download All Active Emails
+                </a>
+                <a href="{% url 'admin:download_all_subscribers' %}" class="button" style="background: #2196F3; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px;">
+                    📊 Download All Subscribers
+                </a>
+                <button type="button" onclick="showNewsletterForm()" class="button" style="background: #FF9800; color: white; padding: 8px 12px; text-decoration: none; border-radius: 4px; border: none; cursor: pointer;">
+                    🚀 Send Newsletter to All
+                </button>
+            </div>
+        </div>
+
+        {% if has_add_permission %}
+            <ul class="object-tools">
+                {% block object-tools-items %}
+                    {{ block.super }}
+                {% endblock %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <!-- Newsletter Form -->
+    <div id="newsletterForm" style="display: none; background: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 20px; border: 1px solid #ffeaa7;">
+        <h4>Send Newsletter to All Active Subscribers</h4>
+        <form method="POST" action="{% url 'admin:send_newsletter_to_all' %}">
+            {% csrf_token %}
+            <div style="margin-bottom: 10px;">
+                <label><strong>Subject:</strong></label>
+                <input type="text" name="subject" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" placeholder="Enter newsletter subject" required>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label><strong>Message:</strong></label>
+                <textarea name="message" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; height: 150px;" placeholder="Enter your newsletter content..." required></textarea>
+            </div>
+            <div>
+                <button type="submit" class="button" style="background: #28a745; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">
+                    🚀 Send to All Subscribers
+                </button>
+                <button type="button" onclick="hideNewsletterForm()" class="button" style="background: #6c757d; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showNewsletterForm() {
+            document.getElementById('newsletterForm').style.display = 'block';
+        }
+        function hideNewsletterForm() {
+            document.getElementById('newsletterForm').style.display = 'none';
+        }
+    </script>
+{% endblock %}

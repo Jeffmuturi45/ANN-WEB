@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Coaching for Growth & Success | Annastacia Wainaina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- For better browser support -->
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+    <style>
+        /* CSS Reset and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #4a5568;
+            --accent: #c53030;
+            --light: #f7fafc;
+            --dark: #2d3748;
+            --transition: all 0.3s ease;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #a53030;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+    /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+              display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Chela One', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo img {
+  max-height: 60px;   /* keeps it proportional to navbar */
+  width: auto;        /* maintains aspect ratio */
+  height: auto;       /* makes it shrink naturally */
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .logo img {
+    max-height: 50px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .logo img {
+    max-height: 40px;
+  }
+}
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+              position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+        }
+
+        .nav-link i {
+             font-size: 0.8rem;
+             transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 10px 0;
+  min-width: 200px;
+  display: none;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+  color: #c53030;
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Rotate chevron when open */
+.nav-item:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+/* Mobile-friendly tweak */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;   /* center the links horizontally */
+    gap: 15px;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    margin: 0;
+    padding-left: 0; /* reset left indent */
+    text-align: center;   /* center dropdown links */
+  }
+
+  .dropdown-menu li a {
+    padding: 10px;  /* equal padding */
+    display: block;
+  }
+}
+        .cart-icon {
+            display: flex;
+            color: #c53030;
+            align-items: center;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 150px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 40px;
+            transition: var(--transition);
+            border-left: 4px solid var(--accent);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-text {
+            color: var(--secondary);
+        }
+
+        /* Process Section */
+        .process {
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .step-text {
+            color: var(--secondary);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CTA Section */
+        .cta {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .cta .section-title {
+            color: white;
+        }
+
+        .cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+        }
+
+        .btn {
+            text-decoration: none;
+        }
+
+             ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+   <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'speaking' %}" class="nav-link active">MyServices<i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'speaking' %}">Speaking</a></li>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="{% url 'journal' %}" class="nav-link">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'podcast' %}" class="nav-link">PODCAST</a></li>
+                <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                <li class="nav-item cart-icon"><i class="fas fa-shopping-cart"></i>Cart</li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Leadership Coaching</h1>
+                    <p>As a trusted advisor in leadership coaching, I understand the importance of developing strong and effective leaders within organizations. My goal is to empower individuals to reach their full potential and drive positive change.</p>
+                    <a href="#offerings" class="btn">View My Coaching Offerings</a>
+                </div>
+                <div class="hero-image">
+                    <div style="background-color: #e2e8f0; height: 400px; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                        <img src="{% static 'assets/jehyun-sung-6U5AEmQIajg-unsplash.webp' %}" alt="Jehyun">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="offerings">
+        <div class="container">
+            <h2 class="section-title">My Coaching Offerings</h2>
+            <p class="section-subtitle">Here's an irresistible offer tailored specifically for you:</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01.</div>
+                    <h3 class="service-title">Personalized Leadership Assessment</h3>
+                    <p class="service-text">I will conduct a comprehensive assessment of your leadership style, strengths, and areas for development. This will provide valuable insights and serve as a foundation for our coaching journey.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">02.</div>
+                    <h3 class="service-title">Customized Coaching Program</h3>
+                    <p class="service-text">I will design a personalized coaching program tailored to your specific needs and goals. Through one-on-one sessions, we will focus on enhancing your leadership skills, building resilience, and developing strategies to navigate complex challenges.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">03.</div>
+                    <h3 class="service-title">Strengths-Based Approach</h3>
+                    <p class="service-text">By leveraging your unique strengths, we will unlock your full leadership potential. I will help you identify and leverage your natural talents, enabling you to lead with authenticity and confidence.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">04.</div>
+                    <h3 class="service-title">Goal Setting and Accountability</h3>
+                    <p class="service-text">Together, we will establish clear and achievable goals that align with your aspirations. I will provide ongoing support, holding you accountable for your commitments and guiding you towards sustainable growth.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">05.</div>
+                    <h3 class="service-title">Effective Communication and Influence</h3>
+                    <p class="service-text">I will equip you with the tools and techniques to communicate effectively, inspire others, and build strong relationships. We will work on refining your communication skills, emotional intelligence, and influencing strategies to drive positive outcomes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">06.</div>
+                    <h3 class="service-title">Continuous Learning and Development</h3>
+                    <p class="service-text">As your trusted advisor, I will stay by your side throughout your leadership journey. I will provide access to relevant resources, articles, and industry insights to support your ongoing learning and development.</p>
+                </div>
+            </div>
+            
+            <!-- Seventh service card spanning full width -->
+            <div class="service-card" style="grid-column: 1 / -1; margin-top: 20px;">
+                <div class="service-number">07.</div>
+                <h3 class="service-title">Confidentiality and Trust</h3>
+                <p class="service-text">As a trusted advisor, I prioritize confidentiality and create a safe space for open and honest conversations. You can feel confident sharing your challenges, aspirations, and concerns, knowing that our discussions are confidential and judgment-free.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">My Coaching Process</h2>
+            <p class="section-subtitle">A structured approach to unlocking your leadership potential</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="step-title">Assessment</h3>
+                    <p class="step-text">Comprehensive evaluation of your current leadership capabilities and goals</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="step-title">Strategy</h3>
+                    <p class="step-text">Development of a personalized coaching plan tailored to your unique needs</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="step-title">Implementation</h3>
+                    <p class="step-text">Regular coaching sessions with actionable strategies and continuous support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Leadership Transformation</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div style="background-color: #e2e8f0; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                        <img src="{% static 'assets/jonny-caspari-DVzt7cvRKRo-unsplash.webp' %}" alt="Jonny">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div style="background-color: #cbd5e0; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                       <img src="{% static 'assets/kiana-bosman-0pB01U2NDCQ-unsplash.webp' %}" alt="Kiana">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div style="background-color: #a0aec0; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                        <img src="{% static 'assets/alfred-aloushy-Ow-joAY8NyY-unsplash.webp' %}" alt="Alfred">
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div style="background-color: #718096; height: 100%; display: flex; align-items: center; justify-content: center; color: white;">
+                        <img src="{% static 'assets/thought-catalog-505eectW54k-unsplash.webp' %}" alt="Thought">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="section-title">Get in touch</h2>
+            <p class="section-subtitle">Ready to unlock your leadership potential and drive meaningful change?</p>
+            <div class="cta-buttons">
+                <a href="{% url 'contact' %}" class="btn">Get started by clicking here</a>
+                <a href="{% url 'speaking' %}" class="btn btn-outline">View My Services</a>
+            </div>
+        </div>
+    </section>
+
+ 
+   <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Annastacia Wainaina</div>
+                    <p>Leadership consultant, coach, and creator of the Freedom Fires process.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                      <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'speaking' %}">SPEAKING</a></li>
+                        <li><a href="{% url 'journal' %}">JOURNAL</a></li>
+                        <li><a href="{% url 'podcast' %}">PODCAST</a></li>
+                        <li><a href="{% url 'shop' %}">COURSES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/annastacia-wainaina-9bbba33b/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/annastaciawainaina/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/annastaciaw"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+       
+           <div class="footer-bottom">
+  <p>
+    © <span id="year"></span> Annastacia Wainaina. All Rights Reserved. 
+    | Developed by <a href="https://alphacodesolutions.netlify.app" target="_blank" rel="noopener noreferrer" style="color: #F7DF1E; font-weight: 500; text-decoration: none;">AlphaCode Solutions</a>
+  </p>
+</div>
+
+<script>
+                // Navbar dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".nav-item.dropdown");
+  const menu = dropdown.querySelector(".dropdown-menu");
+  let closeTimer;
+
+  // Show immediately on hover
+  dropdown.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+    menu.style.display = "block";
+  });
+
+  // Delay hiding when mouse leaves
+  dropdown.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(() => {
+      menu.style.display = "none";
+    }, 400); // delay in ms (here: 0.5s)
+  });
+});
+
+  // Auto-update copyright year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

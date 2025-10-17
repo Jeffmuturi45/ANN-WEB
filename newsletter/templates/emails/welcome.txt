@@ -1,0 +1,32 @@
+Welcome to Our Community! 🎉
+
+Hello Wonderful Person!
+
+Thank you for subscribing to Annastacia's newsletter. You've just joined an amazing community of creative and inspiring individuals!
+
+Here's what you can look forward to:
+
+✨ Exclusive Content: Get first access to new projects and insights
+🎨 Creative Inspiration: Behind-the-scenes looks at the creative process  
+📰 Latest Updates: Stay informed about new releases and events
+💡 Professional Tips: Valuable insights to help you on your journey
+🎁 Special Offers: Exclusive deals just for our subscribers
+
+We believe in creating meaningful content that inspires, educates, and connects. You can expect to hear from us regularly with valuable insights and updates.
+
+What's next?
+Keep an eye on your inbox for our first newsletter coming soon. We're excited to share amazing content with you!
+
+If you have any questions or just want to say hello, simply reply to this email. We'd love to hear from you!
+
+Visit our website: {{ site_url }}
+
+With warm regards,
+Annastacia Wainaina
+
+---
+© 2025 Annastacia Wainaina. All rights reserved.
+
+Unsubscribe: {{ unsubscribe_link }}
+
+You're receiving this email because you subscribed to our newsletter.

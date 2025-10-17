@@ -1,0 +1,5 @@
+Hi {{ contact.full_name }},
+
+Thanks for contacting Annastacia. We received your message and will get back to you shortly.
+
+— Annastacia

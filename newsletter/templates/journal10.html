@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Awareness Month - Annastacia Wainaina</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <!-- For better browser support -->
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8B4513; /* Saddle Brown */
+            --secondary: #A0522D; /* Sienna */
+            --accent: #D2691E; /* Chocolate */
+            --light: #F5F5DC; /* Beige */
+            --dark: #3E2723; /* Dark Brown */
+            --text: #5D4037; /* Brown Text */
+            --text-light: #8D6E63; /* Light Brown Text */
+            --paper: #FDF5E6; /* Old Paper Color */
+            --health-green: #2E8B57;
+            --health-blue: #4682B4;
+            --health-teal: #20B2AA;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+          /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+              display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Chela One', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo img {
+  max-height: 60px;   /* keeps it proportional to navbar */
+  width: auto;        /* maintains aspect ratio */
+  height: auto;       /* makes it shrink naturally */
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .logo img {
+    max-height: 50px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+  .logo img {
+    max-height: 40px;
+  }
+}
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+              position: relative;
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--primary);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+        }
+
+        .nav-link i {
+             font-size: 0.8rem;
+             transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 10px 0;
+  min-width: 200px;
+  display: none;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+  color: #c53030;
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+/* Rotate chevron when open */
+.nav-item:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+/* Mobile-friendly tweak */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;   /* center the links horizontally */
+    gap: 15px;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    margin: 0;
+    padding-left: 0; /* reset left indent */
+    text-align: center;   /* center dropdown links */
+  }
+
+  .dropdown-menu li a {
+    padding: 10px;  /* equal padding */
+    display: block;
+  }
+}
+        .cart-icon {
+            display: flex;
+            color: #c53030;
+            align-items: center;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        /* Journal Hero */
+        .journal-hero {
+            background: linear-gradient(rgba(139, 69, 19, 0.85), rgba(139, 69, 19, 0.9)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin-top: 60px;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .health-banner {
+            height: 8px;
+            background: linear-gradient(to right, 
+                var(--health-green) 25%, 
+                var(--health-blue) 25% 50%, 
+                var(--health-teal) 50% 75%, 
+                var(--accent) 75% 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .journal-hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+
+        .journal-hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Journal Content */
+        .journal-content {
+            padding: 80px 0;
+        }
+
+        .journal-article {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--paper);
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .journal-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .journal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .journal-date {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .journal-category {
+            background: linear-gradient(135deg, var(--health-green), var(--health-blue));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .journal-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .journal-text p {
+            margin-bottom: 25px;
+        }
+
+        .journal-text p:first-child:first-letter {
+            float: left;
+            font-size: 4rem;
+            line-height: 1;
+            margin: 0.1em 0.1em 0.1em 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .health-tip {
+            background: linear-gradient(135deg, var(--health-green), var(--health-teal));
+            color: white;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .health-tip:before {
+            content: '💡';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 2rem;
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .tip-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .health-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .health-pillar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--health-green);
+            transition: transform 0.3s ease;
+        }
+
+        .health-pillar:nth-child(2) {
+            border-top-color: var(--health-blue);
+        }
+
+        .health-pillar:nth-child(3) {
+            border-top-color: var(--health-teal);
+        }
+
+        .health-pillar:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .pillar-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(210, 105, 30, 0.1), rgba(139, 69, 19, 0.1));
+            border-left: 4px solid var(--accent);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .journal-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #e0d6c5;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-share a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-share a:hover {
+            background: linear-gradient(135deg, var(--health-green), var(--health-blue));
+            color: white;
+            transform: translateY(-3px);
+        }
+
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            background-color: var(--light);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(135deg, var(--health-green), var(--health-blue));
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: linear-gradient(135deg, var(--health-blue), var(--health-green));
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .journal-article {
+                padding: 40px;
+            }
+            
+            .journal-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+           .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            
+            .journal-hero {
+                padding: 80px 0;
+            }
+            
+            .journal-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .journal-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .journal-actions {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .health-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 4px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .journal-hero {
+                padding: 60px 0;
+            }
+            
+            .journal-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .journal-article {
+                padding: 30px 20px;
+            }
+            
+            .journal-title {
+                font-size: 1.8rem;
+            }
+            
+            .journal-text {
+                font-size: 1rem;
+            }
+            
+            .tip-text {
+                font-size: 1.1rem;
+            }
+        }
+
+                      .btn {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+        <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'speaking' %}" class="nav-link">MyServices<i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'speaking' %}">Speaking</a></li>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link">Shop</a></li>
+                <li class="nav-item"><a href="{% url 'journal' %}" class="nav-link active">Journal</a></li>
+                <li class="nav-item"><a href="{% url 'podcast' %}" class="nav-link">PODCAST</a></li>
+                <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                <li class="nav-item cart-icon"><i class="fas fa-shopping-cart"></i>Cart</li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Journal Hero -->
+    <section class="journal-hero">
+        <div class="container">
+            <h1>Health Awareness Month: Your True Wealth</h1>
+            <p>Prioritizing physical, emotional, and mental wellbeing for a fulfilling life</p>
+        </div>
+        <div class="health-banner"></div>
+    </section>
+
+    <!-- Journal Content -->
+    <section class="journal-content">
+        <div class="container">
+            <article class="journal-article">
+                <h1 class="journal-title">Health Awareness Month: Your True Wealth</h1>
+                
+                <div class="journal-meta">
+                    <div class="journal-date">May 3, 2021</div>
+                    <div class="journal-category">Health & Wellness</div>
+                </div>
+                
+                <div class="journal-text">
+                    <p>Health: Physical, Emotional, and Mental are important. What we eat, how we move, the quality of our sleep, what we feed our minds our capacity to manage our emotions determines our overall health.</p>
+                    
+                    <p>When we are conscious, we can then be in touch with our bodies to identify when there is a change that needs attention.</p>
+                    
+                    <div class="health-grid">
+                        <div class="health-pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3 class="pillar-title">Physical Health</h3>
+                            <p>Nutrition, exercise, sleep, and preventative care</p>
+                        </div>
+                        <div class="health-pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="pillar-title">Mental Health</h3>
+                            <p>Mindfulness, therapy, and mental stimulation</p>
+                        </div>
+                        <div class="health-pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <h3 class="pillar-title">Emotional Health</h3>
+                            <p>Stress management and emotional awareness</p>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <p><strong>Pain is not normal, never normalise it.</strong> This just tells you that your body needs you to pay attention, so don't ignore it. Being a medical practitioner, I have witnessed many times people show up at the doctors when cancer has spread significantly because they ignored a symptom.</p>
+                    </div>
+                    
+                    <div class="health-tip">
+                        <p class="tip-text">Manage your stress, this will help you be more productive and live longer.</p>
+                        <p>Whether this means 10 mins walk, 10 mins meditation, journaling, dancing, listening to music, 10 mins of doing nothing whatever it takes please pay attention.</p>
+                    </div>
+                    
+                    <p>Normalise seeing a therapist if that's what you need. Your mental health is super important. Don't wait till it's too late. We all have very toxic conversations in our head be aware recognise and deal with. Don't say you are fine when you just don't want to talk to someone. On the opposite, hug and smile at the ones you care for, laugh as much as you can it's a medicine to the soul.</p>
+                    
+                    <div class="health-tip">
+                        <p class="tip-text">Pay attention to how you breathe.</p>
+                        <p>Take 5 mins each day to do some breathing exercise and become conscious this will help you get back to your natural equilibrium. Couple this with meditation and you are on to something amazing. Meditation is not thinking, it's being aware of your thoughts as an observer, not a participant.</p>
+                    </div>
+                    
+                    <p>Sleep, I need to work on this myself. But guess what, sleep is so important that the Guinness book of records won't allow people to compete for the record of who can go the longest without sleep. Lack of sleep alters your brain function, alertness and general well-being. If you are sleeping under 6hrs please create sleep hygiene and ensure you get quality sleep recommended 8hrs and more. You will save yourselves from Alzheimer's, cancer, weight gain and many more.</p>
+                    
+                    <div class="highlight-box">
+                        <p>Most importantly create a healthy relationship with your doctor to go for checks preventative not reactive!</p>
+                    </div>
+                    
+                    <p>Commit yourself to be healthy and look after yourself.</p>
+                </div>
+                
+                <div class="journal-actions">
+                    <div class="social-share">
+                        <span>Share this article:</span>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fas fa-link"></i></a>
+                    </div>
+                    <a href="{% url 'journal' %}" class="btn">Explore More Journal Entries</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+ 
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Join My Wellness Newsletter</h2>
+                <p>Receive health tips, journal entries, and updates on workshops focused on holistic wellbeing.</p>
+                <form class="newsletter-form" method="post">
+                    <input type="email" name="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Annastacia Wainaina</div>
+                    <p>Leadership consultant, coach, and creator of the Freedom Fires process.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                       <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'speaking' %}">SPEAKING</a></li>
+                        <li><a href="{% url 'journal' %}">JOURNAL</a></li>
+                        <li><a href="{% url 'podcast' %}">PODCAST</a></li>
+                        <li><a href="{% url 'shop' %}">COURSES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="{% url 'leadership_consultancy' %}">Leadership Consultancy</a></li>
+                        <li><a href="{% url 'leadership_coaching' %}">Leadership Coaching</a></li>
+                        <li><a href="{% url 'leadership_workshops' %}">Leadership Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/annastacia-wainaina-9bbba33b/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/annastaciawainaina/"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.facebook.com/annastaciaw"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+      
+           <div class="footer-bottom">
+  <p>
+    © <span id="year"></span> Annastacia Wainaina. All Rights Reserved. 
+    | Developed by <a href="https://alphacodesolutions.netlify.app" target="_blank" rel="noopener noreferrer" style="color: #F7DF1E; font-weight: 500; text-decoration: none;">AlphaCode Solutions</a>
+  </p>
+</div>
+
+<script>
+  // Auto-update copyright year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Navbar dropdown
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.querySelector(".nav-item.dropdown");
+  const menu = dropdown.querySelector(".dropdown-menu");
+  let closeTimer;
+
+  // Show immediately on hover
+  dropdown.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+    menu.style.display = "block";
+  });
+
+  // Delay hiding when mouse leaves
+  dropdown.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(() => {
+      menu.style.display = "none";
+    }, 400); // delay in ms (here: 0.5s)
+  });
+});
+</script>
+
+        </div>
+    </footer>
+
+    <script>
+    // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+
+                         // Share buttons functionality
+             document.addEventListener("DOMContentLoaded", function () {
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+
+        document.querySelector('.social-share a:nth-child(2)').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+        document.querySelector('.social-share a:nth-child(3)').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+        document.querySelector('.social-share a:nth-child(4)').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
+        
+        // Copy Link Button (last one)
+        document.querySelector('.social-share a:nth-child(5)').addEventListener('click', function (e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert("Link copied to clipboard!");
+            });
+        });
+    });
+    </script>
+
+    <script>
+/* CSRF helper from Django docs */
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const csrftoken = getCookie('csrftoken');
+
+  // Newsletter forms
+  document.querySelectorAll('.newsletter-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[name="email"]');
+      const email = emailInput.value.trim();
+      if (!email) { alert('Please enter your email'); return; }
+
+      const data = new URLSearchParams();
+      data.append('email', email);
+      data.append('source', window.location.pathname);
+
+      try {
+        const res = await fetch('/subscribe/', {
+          method: 'POST',
+          body: data.toString(),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'X-CSRFToken': csrftoken
+          },
+          credentials: 'same-origin'
+        });
+        const json = await res.json();
+        if (json.success) {
+          alert(json.message || 'Subscribed!');
+          form.reset();
+        } else {
+          alert(json.error || 'Subscription failed.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error — please try again later.');
+      }
+    });
+  });
+
+  // Contact forms
+  document.querySelectorAll('.contact-form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      // Validate basic client-side
+      const required = ['full_name','email','message'];
+      for (let r of required) {
+        if (!fd.get(r) || fd.get(r).trim() === '') {
+          alert('Please fill required fields');
+          return;
+        }
+      }
+      try {
+        const res = await fetch('/contact/submit/', {
+          method: 'POST',
+          body: new URLSearchParams(fd),
+          headers: {'X-CSRFToken': csrftoken},
+          credentials: 'same-origin'
+        });
+        const json = await res.json();
+        if (json.success) {
+          alert(json.message || 'Message sent!');
+          form.reset();
+        } else {
+          alert(json.error || 'Failed to send message.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error — please try again later.');
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

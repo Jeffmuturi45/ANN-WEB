@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon for annweb
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/path/to/annweb
+ExecStart=/path/to/annweb/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock annweb.wsgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
