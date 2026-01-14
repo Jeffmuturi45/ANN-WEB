@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import environ
+import dotenv
 from pathlib import Path
 import os
 
@@ -24,7 +25,8 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1','localhost', 'annastaciawainaina.com'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+                         '127.0.0.1', 'localhost', 'annastaciawainaina.com'])
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -79,17 +81,29 @@ WSGI_APPLICATION = 'annweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # If using PyMySQL, add pymysql.install_as_MySQLdb in __init__.py
+#         'NAME': env('DB_NAME'),
+#         'USER': env('DB_USER'),
+#         'PASSWORD': env('DB_PASS'),
+#         'HOST': env('DB_HOST'),
+#         'PORT': env('DB_PORT'),
+#         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+# }
+# }
+
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # If using PyMySQL, add pymysql.install_as_MySQLdb in __init__.py
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASS'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+    }
 }
-}
+
 
 # Email
 EMAIL_BACKEND = env('EMAIL_BACKEND')
@@ -139,12 +153,8 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / "newsletter/static", 
-]
-
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Required for collectstatic
+STATICFILES_DIRS = [BASE_DIR / 'annweb\staticfiles\assets']
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Required for collectstatic
 
 # Media files (user uploaded content)
 MEDIA_URL = '/media/'

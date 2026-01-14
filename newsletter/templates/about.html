@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,11 +9,23 @@
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
  <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}">
     <!-- For better browser support -->
-    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}">
 
     <style>
         /* CSS Reset and Variables */
@@ -649,7 +661,10 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="{% static "assets/AW+Primary+Logo.webp" %}" alt="Annastacia Wainaina Logo">
+                <img src="{% static "assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        " %}" alt="Annastacia Wainaina Logo">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
@@ -679,11 +694,26 @@
     <!-- Hero Section with Sliding Background -->
     <section class="hero">
         <div class="hero-bg">
-            <div class="hero-bg-slide active" style="background-image: url('{% static 'assets/Screen+Shot+2021-02-04+at+11.21.47+AM.webp' %}');"></div>
-            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/freedom\ fires.jpg' %}');"></div>
-            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/windows-hNiNxhUfCfQ-unsplash.webp' %}');"></div>
-            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/photo+glenn+nicholls+make+it+happen++13764.webp' %}');"></div>
-            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/human\ edge.jpg' %}');"></div>
+            <div class="hero-bg-slide active" style="background-image: url('{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/freedom\ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}');"></div>
+            <div class="hero-bg-slide" style="background-image: url('{% static 'assets/human\ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}');"></div>
             <div class="hero-bg-overlay"></div>
         </div>
         <div class="container hero-content">
@@ -698,7 +728,10 @@
             <div class="about-intro-grid">
                 <div class="about-image" data-aos="fade-right" data-aos-duration="800">
                     <div class="about-image-inner" style="background-color: #e2e8f0; height: 500px; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
-                        <img src="{%static 'assets/photo+glenn+nicholls++13863.webp' %}" alt="Annastacia Wainaina">
+                        <img src="{%static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt="Annastacia Wainaina">
                     </div>
                 </div>
                 <div class="about-content" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
@@ -785,12 +818,30 @@
                 </div>
             </div>
             <div class="image-gallery">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800"><img src="{% static 'assets/YOUNITY_08.webp' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100"><img src="{% static 'assets/photo+glenn+nicholls+make+it+happen++13933.webp' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"><img src="{% static 'assets/Screen+Shot+2021-02-04+at+11.21.47+AM.webp' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300"><img src="{% static 'assets/photo+glenn+nicholls++13863.webp' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400"><img src="{% static 'assets/photo+glenn+nicholls+make+it+happen++13843.webp' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500"><img src="{% static 'assets/10.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800"><img src="{% static 'assets/YOUNITY_ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100"><img src="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"><img src="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300"><img src="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400"><img src="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500"><img src="{% static 'assets/ 
+            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
+            return $clean
+        ' %}" alt=""></div>
             </div>
             <div class="footer-bottom">
                 <p>
