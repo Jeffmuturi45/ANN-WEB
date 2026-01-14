@@ -20,7 +20,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -153,8 +153,13 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'annweb\staticfiles\assets']
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Required for collectstatic
+
+STATICFILES_DIRS = [
+    BASE_DIR / "staticfiles"
+]
+
+# Used by collectstatic
+STATIC_ROOT = BASE_DIR / "static"
 
 # Media files (user uploaded content)
 MEDIA_URL = '/media/'
