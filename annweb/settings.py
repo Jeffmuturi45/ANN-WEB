@@ -122,10 +122,12 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Changed for production
+STATIC_URL = "/static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles')  # Your source static files
+    BASE_DIR / "static",   # only if this folder exists
 ]
 
 # WhiteNoise configuration for static files
