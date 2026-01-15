@@ -8,23 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
  <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
-    <!-- For better browser support -->
-    <link rel="shortcut icon" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
+<link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+
+
     <style>
         /* CSS Reset and Variables */
         * {
@@ -766,10 +752,7 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="{% static "assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        " %}" alt="Annastacia Wainaina Logo">
+                <img src="{% static 'assets/AW+Primary+Logo.webp' %}" alt="Annastacia Wainaina Logo">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
@@ -823,10 +806,7 @@
             
             <div class="shows-container">
                 <div class="show-card" data-aos="fade-right" data-aos-delay="300">
-                    <div class="show-image" style="background-color: #1a1a2e;"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt="Human Edge"></div>
+                    <div class="show-image" style="background-color: #1a1a2e;"><img src="{% static 'assets/human edge.jpg' %}" alt="Human Edge"></div>
                     <div class="show-content">
                         <h3 class="show-title">The Human Edge</h3>
                         <p class="show-description">Explore the intersection of leadership, psychology, and human potential. Each episode dives into practical strategies for developing emotional intelligence, resilience, and authentic leadership in today's complex world.</p>
@@ -845,10 +825,7 @@
                 </div>
                 
                 <div class="show-card" data-aos="fade-left" data-aos-delay="300">
-                    <div class="show-image" style="background-color: #0f3460;"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt="Freedom Fires"></div>
+                    <div class="show-image" style="background-color: #0f3460;"><img src="{% static 'assets/freedom fires.jpg' %}" alt="Freedom Fires"></div>
                     <div class="show-content">
                         <h3 class="show-title">Freedom Fires</h3>
                         <p class="show-description">Join Annastacia as she guides you through the Freedom Fires process - a transformative journey to break free from limiting beliefs, ignite your inner fire, and step into your most authentic and powerful self.</p>

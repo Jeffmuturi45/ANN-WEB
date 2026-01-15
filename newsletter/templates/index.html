@@ -16,23 +16,11 @@
     <meta name="author" content="Annastacia Wainaina">
 
  <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}" sizes="32x32">
     <!-- For better browser support -->
-    <link rel="shortcut icon" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}">
+    <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon.png' %}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -842,10 +830,7 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="{% static "assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        " %}" alt="Annastacia Wainaina Logo">
+                <img src="{% static 'assets/AW+Primary+Logo.webp' %}" alt="Annastacia Wainaina Logo">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
@@ -877,20 +862,10 @@
     <section class="hero">
         <!-- Video Background -->
         <div class="video-background">
-            <!-- Replace ' 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' with the path to your actual MP4 file -->
             <video autoplay muted loop playsinline>
-                <source src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" type="video/mp4">
+                <source src="{% static 'assets/annastaciawainaina.mp4' %}" type="video/mp4">
                 <!-- Fallback image if video doesn't load -->
-                <img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt="Fallback Hero Image">
+                <img src="{% static 'assets/2.webp' %}" alt="Fallback Hero Image">
             </video>
         </div>
         
@@ -920,10 +895,7 @@
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
                     <div style="background-color: #e2e8f0; height: 400px; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
-                        <img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt="Annastacia">
+                        <img src="{% static 'assets/1.webp'%}" alt="Annastacia">
                     </div>
                 </div>
                 <div class="about-content" data-aos="fade-left" data-aos-delay="200">
@@ -949,10 +921,7 @@
 
       <!-- Image Content -->
       <div class="courses-image" data-aos="fade-left" data-aos-delay="200">
-        <img src="{%static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt="Online Courses">
+        <img src="{%static 'assets/visoon+creation+thumb.webp' %}" alt="Online Courses">
       </div>
     </div>
   </div>
@@ -1072,30 +1041,12 @@
                 </div>
             </div>
             <div class="image-gallery">
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="{%static 'assets/YOUNITY_ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        '%}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="{% static "assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        " %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        '%}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt=""></div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600"><img src="{% static 'assets/ 
-            $clean = $args[0].ToLower() -replace '[ +]', '_' -replace '[^a-z0-9._-]', ''
-            return $clean
-        ' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="{%static 'assets/YOUNITY_08.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="{% static 'assets/womanizer-toys-8oB43mw658c-unsplash.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="{% static 'assets/TOPICS+CTA+IMAGE.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400"><img src="{% static 'assets/unsplash-image-Z-gTyL0dOH4.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500"><img src="{% static 'assets/unsplash-image-bbjmFMdWYfw.webp' %}" alt=""></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600"><img src="{% static 'assets/shane-rounce-DNkoNXQti3c-unsplash.webp' %}" alt=""></div>
             </div>
            <div class="footer-bottom">
                 <p>

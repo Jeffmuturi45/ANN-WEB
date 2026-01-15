@@ -13,18 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# MUST come from .env file
 SECRET_KEY = 'd4!k-*o70l % 56gq666+(1 % +m(2v)!lil7a*gh!9 & sne+qmgsv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Must be False for production!
 ALLOWED_HOSTS = ['*']
-
-# ALLOWED_HOSTS = os.environ.get(
-#     "ALLOWED_HOSTS",
-#     "annastaciawainaina.com,www.annastaciawainaina.com"
-# ).split(",")
-
 
 # Application definition
 INSTALLED_APPS = [
